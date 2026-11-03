@@ -1,0 +1,110 @@
+{
+  "doctype": "DocType",
+  "name": "Lead Finder Run",
+  "module": "Custom",
+  "custom": 1,
+  "autoname": "format:LFR-{#####}",
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "title_field": "city",
+  "track_changes": 0,
+  "fields": [
+    {
+      "fieldname": "city",
+      "fieldtype": "Data",
+      "label": "City",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Queued\nRunning\nDone\nStopped\nError",
+      "default": "Queued",
+      "in_list_view": 1,
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "tasks_total",
+      "fieldtype": "Int",
+      "label": "Tasks Total",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "tasks_done",
+      "fieldtype": "Int",
+      "label": "Tasks Done",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "results_count",
+      "fieldtype": "Int",
+      "label": "Results Count",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "requests_used",
+      "fieldtype": "Int",
+      "label": "Requests Used"
+    },
+    {
+      "fieldname": "failed_tasks",
+      "fieldtype": "Int",
+      "label": "Failed Tasks"
+    },
+    {
+      "fieldname": "current_area",
+      "fieldtype": "Data",
+      "label": "Current Area"
+    },
+    {
+      "fieldname": "stop_requested",
+      "fieldtype": "Check",
+      "label": "Stop Requested"
+    },
+    {
+      "fieldname": "started_at",
+      "fieldtype": "Datetime",
+      "label": "Started At"
+    },
+    {
+      "fieldname": "ended_at",
+      "fieldtype": "Datetime",
+      "label": "Ended At"
+    },
+    {
+      "fieldname": "last_error",
+      "fieldtype": "Small Text",
+      "label": "Last Error"
+    },
+    {
+      "fieldname": "areas",
+      "fieldtype": "Long Text",
+      "label": "Areas"
+    },
+    {
+      "fieldname": "terms",
+      "fieldtype": "Long Text",
+      "label": "Terms"
+    },
+    {
+      "fieldname": "options",
+      "fieldtype": "Long Text",
+      "label": "Options"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1
+    },
+    {
+      "role": "Lead Finder",
+      "read": 1
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "doctype": "DocType",
+  "name": "Lead Finder Result",
+  "module": "Custom",
+  "custom": 1,
+  "autoname": "field:uid",
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "title_field": "clinic_name",
+  "track_changes": 0,
+  "fields": [
+    {
+      "fieldname": "uid",
+      "fieldtype": "Data",
+      "label": "UID",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "run",
+      "fieldtype": "Link",
+      "label": "Run",
+      "options": "Lead Finder Run",
+      "reqd": 1,
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "seq",
+      "fieldtype": "Int",
+      "label": "Seq",
+      "in_list_view": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "clinic_name",
+      "fieldtype": "Data",
+      "label": "Clinic Name",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "phone",
+      "fieldtype": "Data",
+      "label": "Phone",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "intl_phone",
+      "fieldtype": "Data",
+      "label": "International Phone"
+    },
+    {
+      "fieldname": "website",
+      "fieldtype": "Small Text",
+      "label": "Website"
+    },
+    {
+      "fieldname": "address",
+      "fieldtype": "Small Text",
+      "label": "Address"
+    },
+    {
+      "fieldname": "area",
+      "fieldtype": "Data",
+      "label": "Area"
+    },
+    {
+      "fieldname": "rating",
+      "fieldtype": "Float",
+      "label": "Rating"
+    },
+    {
+      "fieldname": "reviews",
+      "fieldtype": "Int",
+      "label": "Reviews"
+    },
+    {
+      "fieldname": "business_status",
+      "fieldtype": "Data",
+      "label": "Business Status"
+    },
+    {
+      "fieldname": "place_id",
+      "fieldtype": "Data",
+      "label": "Place ID"
+    },
+    {
+      "fieldname": "maps_url",
+      "fieldtype": "Small Text",
+      "label": "Google Maps URL"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1
+    },
+    {
+      "role": "Lead Finder",
+      "read": 1
+    }
+  ]
+}
