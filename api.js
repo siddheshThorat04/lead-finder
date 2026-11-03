@@ -4,17 +4,28 @@ export const MOCK = import.meta.env.VITE_MOCK === '1'
 export const PRICE_PER_REQUEST = 0.035
 
 const BASE = '' // always same origin; the Vite proxy forwards /api/ to your Frappe site in dev
-const TOKEN = import.meta.env.VITE_FRAPPE_TOKEN || '' // dev only: "api_key:api_secret"
+// Dev only: "api_key:api_secret" for the local Vite proxy. Never used in a production build,
+// where the Vercel function holds the token and people enter ACCESS_PASSWORD instead.
+const TOKEN = import.meta.env.DEV ? (import.meta.env.VITE_FRAPPE_TOKEN || '') : ''
 
 async function call(method, params = {}) {
   const headers = { 'Content-Type': 'application/json', Accept: 'application/json' }
-  if (TOKEN) headers.Authorization = 'token ' + TOKEN
+  if (import.meta.env.PROD) {
+    let pass = ''
+    try { pass = sessionStorage.getItem('lf-pass') || '' } catch (e) { /* storage blocked */ }
+    if (!pass) {
+      pass = window.prompt('Enter the access password for the Lead Finder') || ''
+      try { sessionStorage.setItem('lf-pass', pass) } catch (e) { /* storage blocked */ }
+    }
+    headers['X-Access-Password'] = pass
+  } else if (TOKEN) headers.Authorization = 'token ' + TOKEN
   else if (window.csrf_token) headers['X-Frappe-CSRF-Token'] = window.csrf_token
   const res = await fetch(BASE + '/api/method/' + method, {
     method: 'POST', headers, credentials: 'include', body: JSON.stringify(params),
   })
   let data = {}
   try { data = await res.json() } catch (e) { /* not json */ }
+  if (res.status === 401 && import.meta.env.PROD) { try { sessionStorage.removeItem('lf-pass') } catch (e) { /* ignore */ } }
   if (!res.ok) {
     let msg = 'Request failed (' + res.status + ')'
     try {
