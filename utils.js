@@ -29,9 +29,9 @@ export const pageList = (cur, count) => {
 
 const esc = (v) => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"'
 export const downloadCsv = (rows, city) => {
-  const head = ['Name', 'Phone', 'International phone', 'Rating', 'Reviews', 'Address', 'Area', 'Website', 'Google Maps']
+  const head = ['Name', 'Found by', 'Phone', 'International phone', 'Rating', 'Reviews', 'Address', 'Area', 'Website', 'Google Maps']
   const lines = [head.map(esc).join(',')].concat(rows.map((r) =>
-    [r.name, r.phone, r.intl, r.rating, r.reviews, r.address, r.area, r.website, r.maps_url].map(esc).join(',')))
+    [r.name, r.term, r.phone, r.intl, r.rating, r.reviews, r.address, r.area, r.website, r.maps_url].map(esc).join(',')))
   const blob = new Blob(['\ufeff' + lines.join('\n')], { type: 'text/csv;charset=utf-8' })
   const a = document.createElement('a')
   a.href = URL.createObjectURL(blob)

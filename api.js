@@ -57,7 +57,7 @@ export const startRun = (payload) => {
   if (!MOCK) return call('lead_finder_start', payload)
   mockStart = Date.now()
   mockRows = Array.from({ length: 30 }, (_, i) => ({
-    seq: i + 1, place_id: 'p' + i, name: 'Sample Dental Clinic' + (i + 1), phone: '098765 4' + String(3210 + i),
+    seq: i + 1, place_id: 'p' + i, name: 'Sample Business ' + (i + 1), term: i % 2 ? 'gym' : 'salon', phone: '098765 4' + String(3210 + i),
     intl: '+91 98765 4' + String(3210 + i), website: '', address: 'Street ' + (i + 1) + ', Demo Area', area: 'Demo Area',
     rating: 3.5 + (i % 15) / 10, reviews: 10 + i * 7, status: 'OPERATIONAL', maps_url: 'https://maps.google.com',
   }))
