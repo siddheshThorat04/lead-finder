@@ -356,7 +356,7 @@ export default function LeadFinder() {
                   </select>
                 )}
                 <input className="field search" placeholder="Filter by name, area, phone" value={filter} onChange={(e) => { setFilter(e.target.value); setPage(1) }} />
-                <button type="button" className="outline" disabled={!scoped.length} onClick={() => downloadCsv(view, city)}>Download CSV</button>
+                <button type="button" className="outline" disabled={!scoped.length} onClick={() => downloadCsv(view, city.trim() || (info && info.city) || '', terms.join('-'))}>Download CSV</button>
               </div>
               {scoped.length === 0 ? (
                 <p className="empty">{runName && running ? 'Results appear here as businesses are found.' : 'No results yet. Enter a city, press Find areas, then Start search.'}</p>
